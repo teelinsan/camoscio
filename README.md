@@ -1,8 +1,10 @@
-<p align="center" width="100%">
-<img src="assets/cabrita.png" alt="Cabrita" style="width: 20%; min-width: 300px; display: block; margin: auto;">
-</p>
+[//]: # (<p align="center" width="100%">)
 
-# Cabrita: A portuguese finetuned instruction LLaMA
+[//]: # (<img src="assets/cabrita.png" alt="Cabrita" style="width: 20%; min-width: 300px; display: block; margin: auto;">)
+
+[//]: # (</p>)
+
+# Camoscio: An Italian finetuned instruction LLaMA
 
 This repository is intended to share all the steps and resources that we used to finetune our version of LLaMA.
 
