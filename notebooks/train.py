@@ -1,8 +1,6 @@
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-import torch
-import torch.nn as nn
-import bitsandbytes as bnb
+
 from datasets import load_dataset
 import transformers
 from transformers import AutoTokenizer, AutoConfig, LLaMAForCausalLM 
@@ -81,6 +79,7 @@ def tokenize(prompt):
 data = data.shuffle().map(lambda x: tokenize(generate_prompt(x)))
 
 hub_token = os.environ["HUB_TOKEN"]
+print(f"Hub token: {hub_token}")
 
 trainer = transformers.Trainer(
     model=model,
