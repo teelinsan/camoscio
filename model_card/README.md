@@ -20,7 +20,7 @@ model = LLaMAForCausalLM.from_pretrained(
     load_in_8bit=True,
     device_map="auto",
 )
-model = PeftModel.from_pretrained(model, "teelinsan/camoscio-7b-lora")
+model = PeftModel.from_pretrained(model, "teelinsan/camoscio-7b-llama")
 ```
 
 

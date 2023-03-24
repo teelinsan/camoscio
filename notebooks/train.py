@@ -40,7 +40,7 @@ config = LoraConfig(
 )
 model = get_peft_model(model, config)
 tokenizer.pad_token_id = 0  # unk. we want this to be different from the eos token
-data = load_dataset("json", data_files="./data/alpaca_data.json")
+data = load_dataset("json", data_files="./data/camoscio_data.json")
 
 
 def generate_prompt(data_point):
@@ -92,7 +92,7 @@ trainer = transformers.Trainer(
         learning_rate=LEARNING_RATE,
         fp16=True,
         logging_steps=20,
-        output_dir="camoscio-7b-lora",
+        output_dir="camoscio-7b-llama",
         save_total_limit=3,
         push_to_hub=True,
         hub_token=hub_token,
@@ -103,7 +103,7 @@ model.config.use_cache = False
 trainer.train(resume_from_checkpoint=False)
 
 
-model.save_pretrained("camoscio-7b-lora")
+model.save_pretrained("camoscio-7b-llama")
 trainer.push_to_hub()
 
 
