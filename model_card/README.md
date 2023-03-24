@@ -23,8 +23,4 @@ model = LLaMAForCausalLM.from_pretrained(
 model = PeftModel.from_pretrained(model, "teelinsan/camoscio-7b-llama")
 ```
 
-
-## Data
-
-We translated the [alpaca_data.json](https://github.com/tatsu-lab/stanford_alpaca/blob/main/alpaca_data.json) to portuguese using ChatGPT. Even if this translation was not the best, the tradeoff between costs and results were. We paid around US$ 8.00 to translate the full dataset to portuguese.
-If you want to know more about how the dataset was built go to: [Stanford Alpaca](https://github.com/tatsu-lab/stanford_alpaca).
+Generation Example: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/teelinsan/camoscio/blob/master/notebooks/camoscio-lora.ipynb) 

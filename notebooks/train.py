@@ -96,6 +96,7 @@ trainer = transformers.Trainer(
         save_total_limit=3,
         push_to_hub=True,
         hub_token=hub_token,
+        save_strategy="epoch",
     ),
     data_collator=transformers.DataCollatorForLanguageModeling(tokenizer, mlm=False),
 )
