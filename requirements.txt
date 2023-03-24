@@ -5,4 +5,5 @@ git+https://github.com/zphang/transformers@c3dc391
 torch
 peft
 bitsandbytes
+sentencepiece
 tenacity
