@@ -2,6 +2,10 @@
 license: openrail
 language:
 - it
+tags:
+- italian
+- italiano
+- llama
 ---
 
 # Camoscio: An Italian instruction-tuned LLaMA
@@ -23,4 +27,4 @@ model = LLaMAForCausalLM.from_pretrained(
 model = PeftModel.from_pretrained(model, "teelinsan/camoscio-7b-llama")
 ```
 
-Generation Example: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/teelinsan/camoscio/blob/master/notebooks/camoscio-lora.ipynb) 
+Generation Example: [Open In Colab](https://colab.research.google.com/github/teelinsan/camoscio/blob/master/notebooks/camoscio-lora.ipynb)
