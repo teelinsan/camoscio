@@ -49,7 +49,7 @@ pip install -r requirements.txt
 2. If bitsandbytes doesn't work, [install it from source.](https://github.com/TimDettmers/bitsandbytes/blob/main/compile_from_source.md) Windows users can follow [these instructions](https://github.com/tloen/alpaca-lora/issues/17).
 
 ### Translate the Dataset to Italian (`translate_data.py`)
-Download the dataset from [here]((https://github.com/tatsu-lab/stanford_alpaca/blob/main/alpaca_data.json)) and put it in the `data` folder. Then run:
+Download the dataset from [here](https://github.com/tatsu-lab/stanford_alpaca/blob/main/alpaca_data.json) and put it in the `data` folder. Then run:
 
 ```
 python script/translate_data.py
@@ -84,7 +84,7 @@ Coming soon.
 
 **ChatGPT**: La storia di Pinocchio racconta di un burattino di legno, creato dal falegname Geppetto, che prende vita grazie alla fata turchina. Pinocchio ha un forte desiderio di diventare un bambino vero, ma cade in numerose avventure e inganni, spesso guidato dal suo istinto e dalla sua ingenuità. Nel corso della storia, Pinocchio viene ingannato da un gatto e una volpe, viene imprigionato e trasformato in un asino, ma alla fine dimostra il suo coraggio, la sua lealtà e la sua generosità salvando il padre e ottenendo la sua trasformazione in un bambino vero.
 
-**Camoscio**: 
+**Camoscio**: La storia di Pinocchio racconta di un bambino di nome Pinocchio che vive con i suoi genitori in un piccolo villaggio. Un giorno, Pinocchio incontra un burattino magico che gli dona la possibilità di diventare un vero bambino. Pinocchio inizia una serie di avventure mentre cerca di diventare un vero bambino. Durante il suo viaggio, Pinocchio fa amicizia con molti personaggi e impara molte lezioni di vita. Alla fine, Pinocchio raggiunge il suo obiettivo e diventa un vero bambino.
 
 ---
 
@@ -96,7 +96,7 @@ Coming soon.
 Durante il suo mandato, Mattarella è stato impegnato nella promozione dell'unità nazionale e nella difesa della Costituzione italiana. Ha anche sostenuto l'integrazione europea e la cooperazione internazionale. Nel 2018, ha svolto un ruolo importante nella formazione del governo italiano, che ha visto la nomina di un governo di coalizione tra il Movimento 5 Stelle e la Lega. 
 Mattarella è stato molto attivo nella difesa dei diritti umani e della giustizia sociale, promuovendo iniziative per combattere la povertà e la disuguaglianza. 
 
-**Camoscio**: 
+**Camoscio**: Il presidente della Repubblica Italiana del 2019 è Sergio Mattarella, che è stato eletto il 31 gennaio 2015 e ha prestato giuramento il 31 gennaio 2015.
 
 ---
 
@@ -106,7 +106,7 @@ Mattarella è stato molto attivo nella difesa dei diritti umani e della giustizi
 
 **ChatGPT**: Piatto, matto, spratto, grattò.
 
-**Camoscio**: 
+**Camoscio**: 'Cattivo, cattivo, cattivo, cattivo.'
 
 
 ---
@@ -117,7 +117,7 @@ Mattarella è stato molto attivo nella difesa dei diritti umani e della giustizi
 
 **ChatGPT**: Dante Alighieri è stato uno dei più grandi poeti italiani del Medioevo. Nato a Firenze nel 1265, ha studiato nella prestigiosa Scuola di Santa Croce e ha mostrato fin da giovane una grande passione per la poesia. Ha scritto la sua prima opera, "Il Convivio", all'età di 30 anni, ma è soprattutto noto per la sua opera più famosa, "La Divina Commedia". Questo poema epico, scritto in terzine, descrive il viaggio immaginario di Dante attraverso l'Inferno, il Purgatorio e il Paradiso, e rappresenta una sintesi della cultura medievale, della filosofia e della teologia. Dante ha anche avuto una vita politica attiva, partecipando alla vita pubblica di Firenze e sostenendo la fazione guelfa. Tuttavia, dopo essere stato esiliato dalla città nel 1302, ha trascorso il resto della sua vita in esilio, scrivendo le sue opere più importanti e cercando di rientr
 
-**Camoscio**: 
+**Camoscio**: Dante Alighieri (1265-1321) è considerato uno dei più grandi poeti e scrittori italiani di tutti i tempi. Nato a Firenze, è conosciuto principalmente per il suo poema epico La Divina Commedia, che è considerato uno dei capolavori della letteratura occidentale.
 
 
 ---
@@ -128,7 +128,7 @@ Mattarella è stato molto attivo nella difesa dei diritti umani e della giustizi
 
 **ChatGPT**: Abruzzo, Basilicata, Calabria, Campania, Emilia-Romagna, Friuli-Venezia Giulia, Lazio, Liguria, Lombardia, Marche, Molise, Piemonte, Puglia, Sardegna, Sicilia, Toscana, Trentino-Alto Adige/Südtirol, Umbria, Valle d'Aosta/Vallée d'Aoste, Veneto.
 
-**Camoscio**: Abruzzo, Basilicata, Calabria, Campania, Emilia-Romagna, Friuli-Venezia Giulia, Lazio, Liguria, Lombardia, Marche, Molise, Piemonte, Puglia, Sardegna, Sicilia, Toscana, Trentino-Alto Adige, Umbria, Veneto.
+**Camoscio**: Le regioni italiane in ordine alfabetico sono: Abruzzo, Basilicata, Calabria, Campania, Emilia-Romagna, Friuli-Venezia Giulia, Lazio, Liguria, Lombardia, Marche, Molise, Piemonte, Puglia, Sardegna, Sicilia, Toscana, Trentino-Alto Adige, Umbria, Valle d'Aosta, Veneto.
 
 ---
 
