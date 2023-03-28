@@ -64,6 +64,9 @@ python notebooks/train.py
 
 
 ### Checkpoint export
+
+Checkout the repo [alpaca-lora-exporter](https://github.com/loretoparisi/alpaca-lora-exporter) to merge the model checkpoint with the LoRA weights and export it.
+
 You can use the script `export_hf_checkpoint.py` from the original [Alpaca-LoRa repo](https://github.com/tloen/alpaca-lora/blob/main/export_hf_checkpoint.py) to export the checkpoint to the HuggingFace format or use the script [export_state_dict_checkpoint.py](https://github.com/tloen/alpaca-lora/blob/main/export_state_dict_checkpoint.py) to export the checkpoint to the PyTorch format.
 
 These files contain scripts that merge the LoRA weights back into the base model
