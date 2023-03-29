@@ -13,9 +13,9 @@ The model is intended for research purposes only and should be used with caution
 
 
 
-- LLaMA: Open and Efficient Foundation Language Models. Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timothée Lacroix, Baptiste Rozière, Naman Goyal, Eric Hambro, Faisal Azhar, Aurelien Rodriguez, Armand Joulin, Edouard Grave, Guillaume Lample. https://arxiv.org/abs/2302.13971v1
+- [1] LLaMA: Open and Efficient Foundation Language Models. Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timothée Lacroix, Baptiste Rozière, Naman Goyal, Eric Hambro, Faisal Azhar, Aurelien Rodriguez, Armand Joulin, Edouard Grave, Guillaume Lample. https://arxiv.org/abs/2302.13971v1
 
-- Self-Instruct: Aligning Language Model with Self Generated Instructions. Yizhong Wang, Yeganeh Kordi, Swaroop Mishra, Alisa Liu, Noah A. Smith, Daniel Khashabi, Hannaneh Hajishirzi. https://arxiv.org/abs/2212.10560
+- [2] Self-Instruct: Aligning Language Model with Self Generated Instructions. Yizhong Wang, Yeganeh Kordi, Swaroop Mishra, Alisa Liu, Noah A. Smith, Daniel Khashabi, Hannaneh Hajishirzi. https://arxiv.org/abs/2212.10560
 
 ## 🖥️ Demo - Talk with Camoscio [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/teelinsan/camoscio/blob/master/notebooks/camoscio-lora.ipynb) 
 
@@ -75,6 +75,31 @@ They should help users
 who want to run inference in projects like [llama.cpp](https://github.com/ggerganov/llama.cpp)
 or [alpaca.cpp](https://github.com/antimatter15/alpaca.cpp).
 
+
+## ❓F.A.Q.
+
+<details>
+<summary> Why did you use ChatGPT for translation?</summary>
+We tested several translation APIs including Google Translate, DeepL, and Azure Translator. Our preliminary tests found that these services also translated code snippets (e.g., for i in list -> per i in lista). 
+We found that ChatGPT provided the best results. However, we are aware that the translation is not perfect and there are several artifacts in the dataset due to translation. There are also other <a href="https://github.com/gururise/AlpacaDataCleaned"> known issues</a> with the original Alpaca dataset.
+</details>
+
+<details>
+<summary> Did you pay for the translation service? </summary>
+Yes, we used ChatGPT which is a paid service.
+</details>
+
+<details>
+<summary> Are you aware that some examples are not correct? </summary>
+Yes, we put them specifically to show some limitations of the model (e.g., hallucinations, factual errors, etc...). The model is not perfect and it is just a first step in the direction of building an instruction-tuned model for Italian.
+</details>
+
+<details>
+<summary> Is the model open? </summary>
+The code in this repository and the dataset are open under the Apache 2.0 license. The weights finetuned for the Italian language (LoRA weights) are open under the RAIL license. However, the weights of the base model LLaMA are currently under the <a href="https://github.com/facebookresearch/llama/pull/184">"Non-commercial bespoke"</a> license which does not allow for usage in production.
+</details>
+
+For other questions, open an issue or contact me on [Twitter](https://twitter.com/teelinsan).
 ## 🔍 Evaluation
 
 Coming soon.
@@ -179,7 +204,23 @@ for i in range(1, 101):
         print(i)
 ```
 
----
+## 🖊️ Citations
+
+If you use camoscio or the camoscio dataset in your research, please cite:
+
+```bibtex
+@misc{camoscio,
+  author = {Andrea Santilli},
+  title = {Camoscio: An Italian instruction-tuned LLaMA},
+  year = {2023},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/teelinsan/camoscio}},
+}
+```
+
+You should also cite the original LLaMA paper [1], the Self-Instruct paper [2], the [Stanford Alpaca](https://github.com/tatsu-lab/stanford_alpaca) repo, and the [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) repo.
+
 
 
 
