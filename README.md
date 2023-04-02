@@ -19,7 +19,9 @@ The model is intended for research purposes only and should be used with caution
 
 ## 🖥️ Demo - Talk with Camoscio [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/teelinsan/camoscio/blob/master/notebooks/camoscio-gradio.ipynb)
 
-Clic the button "Open in Colab" above to open the notebook in Google Colab and try it out!
+Clic the button "Open in Colab" above to open the notebook in Google Colab and try out the demo in gradio!
+
+[![gradio.png](assets%2Fgradio.png)](https://colab.research.google.com/github/teelinsan/camoscio/blob/master/notebooks/camoscio-gradio.ipynb)
 
 ## 📚 How to use
 We provide an example notebook on how to load and use the model [here](notebooks/camoscio-lora.ipynb).
