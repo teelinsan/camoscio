@@ -7,3 +7,4 @@ peft
 bitsandbytes
 sentencepiece
 tenacity
+gradio
