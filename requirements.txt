@@ -3,7 +3,7 @@ openai
 datasets
 transformers>=4.28.0
 torch
-peft
+peft>=0.3.0
 bitsandbytes
 sentencepiece
 tenacity

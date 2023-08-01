@@ -72,7 +72,7 @@ python scripts/train.py
 You can use the script `checkpoint_exporter.py` in this repo to merge the original weights of LLaMA with the Camoscio LoRA weights (LLaMA checkpoint + Camoscio LoRA checkpoints = Camoscio).
 The model obtained with this procedure is the final Camoscio model that is equivalent to a LLaMA model tailored for Italian (same architecture and number of parameters) and can be used for finetuning on your downstream task.
 
-To use the script just run the command `python checkpoint_exporter.py`
+To use the script just run the command `python scripts/checkpoint_exporter.py`
 
 Checkout also the script `export_hf_checkpoint.py` from the original [Alpaca-LoRa repo](https://github.com/tloen/alpaca-lora/blob/main/export_hf_checkpoint.py) to export the checkpoint to the HuggingFace format or the script [export_state_dict_checkpoint.py](https://github.com/tloen/alpaca-lora/blob/main/export_state_dict_checkpoint.py) to export the checkpoint to the PyTorch format.
 
@@ -84,7 +84,7 @@ If you are looking for fast and efficient inference, take a look at projects lik
 To finetune Camoscio on your own task in Italian you can modify the `train.py` script according to your needs or use the `finetune.py` script in the [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) repo. We propose here the steps to follow for this second approach.
 
 1. Prepare your dataset. Your dataset should be a json in the format `instruction, input, output`. See `data/camoscio_data.json` for an example.
-2. Merge the checkpoints. Follow the instruction in the section of this readme run `python checkpoint_exporter.py`.
+2. Merge the checkpoints. Follow the instruction in the section of this readme and run `python scripts/checkpoint_exporter.py`.
 3. Clone the [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) repo and copy in the `templates` folder the template of Camoscio (`templates/camoscio.json`)
 4. Run the `finetune.py` script in the [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) repo.
 
