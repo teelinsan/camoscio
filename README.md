@@ -6,7 +6,7 @@ Part of the code in the repo is based on [Alpaca-LoRA](https://github.com/tloen/
 Following these previous approaches, we translated the Stanford Alpaca instruction-tuning dataset into Italian using the ChatGPT API.
 We provide the translated dataset (`camoscio_data.json` - Now also on [Hugging Face's datasets](https://huggingface.co/datasets/teelinsan/camoscio)), the model (available on the [Hugging Face's hub](https://huggingface.co/teelinsan/camoscio-7b-llama)) and the code to reproduce the results.
 
-The model provide zero-shot perfomance comparable with existing trained models for Italian (see [our paper for the evaluation](https://arxiv.org/abs/2307.16456)) and can run [on a Raspberry Pi](https://twitter.com/miolini/status/1634982361757790209) (for research).
+The model provide zero-shot performance comparable with existing trained models for Italian (see [our paper for the evaluation](https://arxiv.org/abs/2307.16456)) and can run [on a Raspberry Pi](https://twitter.com/miolini/status/1634982361757790209) (for research).
 
 To finetune the model on the Italian dataset we adapted the scripts from [cabrita](https://github.com/22-hours/cabrita) and run the training on a single 3090 for 1 day (see details below).
 
