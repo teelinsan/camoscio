@@ -3,8 +3,8 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 from datasets import load_dataset
 import transformers
-from transformers import AutoTokenizer, AutoConfig, LLaMAForCausalLM 
-from transformers.models.llama.tokenization_llama import LLaMATokenizer
+from transformers import LlamaForCausalLM 
+from transformers.models.llama.tokenization_llama import LlamaTokenizer
 from peft import prepare_model_for_int8_training, LoraConfig, get_peft_model
 
 
@@ -19,12 +19,12 @@ LORA_ALPHA = 16
 LORA_DROPOUT = 0.05
 
 
-model = LLaMAForCausalLM.from_pretrained(
+model = LlamaForCausalLM.from_pretrained(
     "decapoda-research/llama-7b-hf",
     load_in_8bit=True,
     device_map="auto",
 )
-tokenizer = LLaMATokenizer.from_pretrained(
+tokenizer = LlamaTokenizer.from_pretrained(
     "decapoda-research/llama-7b-hf", add_eos_token=True
 )
 
@@ -40,7 +40,7 @@ config = LoraConfig(
 )
 model = get_peft_model(model, config)
 tokenizer.pad_token_id = 0  # unk. we want this to be different from the eos token
-data = load_dataset("json", data_files="./data/camoscio_data.json")
+data = load_dataset("json", data_files="../data/camoscio_data.json")
 
 
 def generate_prompt(data_point):
@@ -78,8 +78,6 @@ def tokenize(prompt):
 
 data = data.shuffle().map(lambda x: tokenize(generate_prompt(x)))
 
-hub_token = os.environ["HUB_TOKEN"]
-print(f"Hub token: {hub_token}")
 
 trainer = transformers.Trainer(
     model=model,
@@ -94,8 +92,7 @@ trainer = transformers.Trainer(
         logging_steps=20,
         output_dir="camoscio-7b-llama",
         save_total_limit=3,
-        push_to_hub=True,
-        hub_token=hub_token,
+        push_to_hub=False,
         save_strategy="epoch",
     ),
     data_collator=transformers.DataCollatorForLanguageModeling(tokenizer, mlm=False),
@@ -105,6 +102,6 @@ trainer.train(resume_from_checkpoint=False)
 
 
 model.save_pretrained("camoscio-7b-llama")
-trainer.push_to_hub()
+#trainer.push_to_hub()
 
 

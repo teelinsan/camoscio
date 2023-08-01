@@ -1,0 +1,6 @@
+{
+    "description": "Template used by Camoscio",
+    "prompt_input": "Di seguito è riportata un'istruzione che descrive un task, insieme ad un input che fornisce un contesto più ampio. Scrivete una risposta che completi adeguatamente la richiesta.\n\n### Istruzione:\n{instruction}\n\n### Input:\n{input}\n\n### Risposta:\n",
+    "prompt_no_input": "Di seguito è riportata un'istruzione che descrive un task. Scrivete una risposta che completi adeguatamente la richiesta.\n\n### Istruzione:\n{instruction}\n\n### Risposta:\n",
+    "response_split": "### Risposta:"
+}

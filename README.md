@@ -1,10 +1,12 @@
 # 🇮🇹🦙🤏  Camoscio: An Italian instruction-tuned LLaMA
 
-This repository contains code for reproducing the [Stanford Alpaca](https://github.com/tatsu-lab/stanford_alpaca) in Italian using [low-rank adaptation (LoRA)](https://arxiv.org/pdf/2106.09685.pdf).
-The repo is a fork of [cabrita](https://github.com/22-hours/cabrita) and [Alpaca-LoRA](https://github.com/tloen/alpaca-lora).
-Following previous approaches, we translated the Stanford Alpaca instruction-tuning dataset into Italian using the ChatGPT API.
+This repository contains code for Camoscio, an Italian instruction-tuned LLaMA based on [Stanford Alpaca](https://github.com/tatsu-lab/stanford_alpaca) and trained with [low-rank adaptation (LoRA)](https://arxiv.org/pdf/2106.09685.pdf). The companion paper of this repo is available [at the following url](https://arxiv.org/abs/2307.16456).
+
+Part of the code in the repo is based on [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) and [cabrita](https://github.com/22-hours/cabrita).
+Following these previous approaches, we translated the Stanford Alpaca instruction-tuning dataset into Italian using the ChatGPT API.
 We provide the translated dataset (`camoscio_data.json` - Now also on [Hugging Face's datasets](https://huggingface.co/datasets/teelinsan/camoscio)), the model (available on the [Hugging Face's hub](https://huggingface.co/teelinsan/camoscio-7b-llama)) and the code to reproduce the results.
-The model should provide output of similar quality to `text-davinci-003` (WIP evaluation) that can run [on a Raspberry Pi](https://twitter.com/miolini/status/1634982361757790209) (for research).
+
+The model provide zero-shot perfomance comparable with existing trained models for Italian (see [our paper for the evaluation](https://arxiv.org/abs/2307.16456)) and can run [on a Raspberry Pi](https://twitter.com/miolini/status/1634982361757790209) (for research).
 
 To finetune the model on the Italian dataset we adapted the scripts from [cabrita](https://github.com/22-hours/cabrita) and run the training on a single 3090 for 1 day (see details below).
 
@@ -28,10 +30,10 @@ We provide an example notebook on how to load and use the model [here](notebooks
 
 ```python
 from peft import PeftModel
-from transformers import LLaMATokenizer, LLaMAForCausalLM, GenerationConfig
+from transformers import LlamaTokenizer, LlamaForCausalLM, GenerationConfig
 
-tokenizer = LLaMATokenizer.from_pretrained("decapoda-research/llama-7b-hf")
-model = LLaMAForCausalLM.from_pretrained(
+tokenizer = LlamaTokenizer.from_pretrained("decapoda-research/llama-7b-hf")
+model = LlamaForCausalLM.from_pretrained(
     "decapoda-research/llama-7b-hf",
     load_in_8bit=True,
     device_map="auto",
@@ -58,24 +60,48 @@ python script/translate_data.py
 ```
 
 ### Train the model (`train.py`)
-Just lunch the command (change hyperparameters as needed):
+Just run the command (change hyperparameters as needed):
 
 ```
-python notebooks/train.py
+python scripts/train.py
 ```
 
 
 ### Checkpoint export
 
-Checkout the repo [alpaca-lora-exporter](https://github.com/loretoparisi/alpaca-lora-exporter) to merge the model checkpoint with the LoRA weights and export it.
+You can use the script `checkpoint_exporter.py` in this repo to merge the original weights of LLaMA with the Camoscio LoRA weights (LLaMA checkpoint + Camoscio LoRA checkpoints = Camoscio).
+The model obtained with this procedure is the final Camoscio model that is equivalent to a LLaMA model tailored for Italian (same architecture and number of parameters) and can be used for finetuning on your downstream task.
 
-You can use the script `export_hf_checkpoint.py` from the original [Alpaca-LoRa repo](https://github.com/tloen/alpaca-lora/blob/main/export_hf_checkpoint.py) to export the checkpoint to the HuggingFace format or use the script [export_state_dict_checkpoint.py](https://github.com/tloen/alpaca-lora/blob/main/export_state_dict_checkpoint.py) to export the checkpoint to the PyTorch format.
+To use the script just run the command `python checkpoint_exporter.py`
 
-These files contain scripts that merge the LoRA weights back into the base model
-for export to Hugging Face format and to PyTorch `state_dicts`.
-They should help users
-who want to run inference in projects like [llama.cpp](https://github.com/ggerganov/llama.cpp)
-or [alpaca.cpp](https://github.com/antimatter15/alpaca.cpp).
+Checkout also the script `export_hf_checkpoint.py` from the original [Alpaca-LoRa repo](https://github.com/tloen/alpaca-lora/blob/main/export_hf_checkpoint.py) to export the checkpoint to the HuggingFace format or the script [export_state_dict_checkpoint.py](https://github.com/tloen/alpaca-lora/blob/main/export_state_dict_checkpoint.py) to export the checkpoint to the PyTorch format.
+
+If you are looking for fast and efficient inference, take a look at projects like [llama.cpp](https://github.com/ggerganov/llama.cpp) or [alpaca.cpp](https://github.com/antimatter15/alpaca.cpp).
+
+
+## 🔧 Finetune Camoscio on your own task in Italian
+
+To finetune Camoscio on your own task in Italian you can modify the `train.py` script according to your needs or use the `finetune.py` script in the [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) repo. We propose here the steps to follow for this second approach.
+
+1. Prepare your dataset. Your dataset should be a json in the format `instruction, input, output`. See `data/camoscio_data.json` for an example.
+2. Merge the checkpoints. Follow the instruction in the section of this readme run `python checkpoint_exporter.py`.
+3. Clone the [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) repo and copy in the `templates` folder the template of Camoscio (`templates/camoscio.json`)
+4. Run the `finetune.py` script in the [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) repo.
+
+```bash
+python finetune.py \
+    --base_model='{path_camoscio_merged_ckpt}' \
+    --data_path='{your_dataset_path.json}'\
+    --train_on_inputs=False \
+    --num_epochs=10 \
+    --cutoff_len=512 \
+    --group_by_length \
+    --output_dir='./outdir' \
+    --lora_target_modules='[q_proj,k_proj,v_proj,o_proj]' \
+    --lora_r=16 \
+    --micro_batch_size=8 \
+    --prompt_template 'camoscio'
+```
 
 
 ## ❓F.A.Q.
@@ -102,9 +128,14 @@ The code in this repository and the dataset are open under the Apache 2.0 licens
 </details>
 
 For other questions, open an issue or contact me on [Twitter](https://twitter.com/teelinsan).
+
 ## 🔍 Evaluation
 
-Coming soon.
+Results on the evaluation datasets are available [in the paper](https://arxiv.org/abs/2307.16456).
+
+We provide all the results on the evaluation datasets (NewsSum-IT, SQuAD-IT, XFORMAL IT) in the folder `eval/results`.
+
+These results are obtained by running the script `eval/eval.sh`. Final scores included in the paper are obtained via the notebook `compute_eval_scores.ipynb`
 
 ## 📝 Example outputs
 
@@ -208,16 +239,16 @@ for i in range(1, 101):
 
 ## 🖊️ Citations
 
-If you use camoscio or the camoscio dataset in your research, please cite:
+If you use camoscio or the camoscio dataset in your research, please cite our paper:
 
 ```bibtex
-@misc{camoscio,
-  author = {Andrea Santilli},
-  title = {Camoscio: An Italian instruction-tuned LLaMA},
-  year = {2023},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/teelinsan/camoscio}},
+@misc{santilli2023camoscio,
+      title={Camoscio: an Italian Instruction-tuned LLaMA}, 
+      author={Andrea Santilli and Emanuele Rodolà},
+      year={2023},
+      eprint={2307.16456},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
 }
 ```
 

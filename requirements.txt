@@ -1,10 +1,11 @@
 tqdm
 openai
 datasets
-git+https://github.com/zphang/transformers@c3dc391
+transformers>=4.28.0
 torch
 peft
 bitsandbytes
 sentencepiece
 tenacity
 gradio
+fire
