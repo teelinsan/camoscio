@@ -1,10 +1,7 @@
-# Imported from the orginal Alpaca LoRA repo
-
 import torch
 import fire
 from peft import PeftModel
 from transformers import LlamaForCausalLM
-
 
 
 def merge_checkpoints(base_model="decapoda-research/llama-7b-hf", lora_model="teelinsan/camoscio-7b-llama", save_path="./camoscio_merged_ckpt"):

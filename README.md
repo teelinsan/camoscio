@@ -81,16 +81,17 @@ If you are looking for fast and efficient inference, take a look at projects lik
 
 ## 🔧 Finetune Camoscio on your own task in Italian
 
-To finetune Camoscio on your own task in Italian you can modify the `train.py` script according to your needs or use the `finetune.py` script in the [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) repo. We propose here the steps to follow for this second approach.
+To finetune Camoscio on your own task in Italian you can use the `finetune.py` script in the `scripts` folder.
 
 1. Prepare your dataset. Your dataset should be a json in the format `instruction, input, output`. See `data/camoscio_data.json` for an example.
 2. Merge the checkpoints. Follow the instruction in the section of this readme and run `python scripts/checkpoint_exporter.py`.
-3. Clone the [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) repo and copy in the `templates` folder the template of Camoscio (`templates/camoscio.json`)
-4. Run the `finetune.py` script in the [Alpaca-LoRA](https://github.com/tloen/alpaca-lora) repo.
+3. Run the `finetune.py` script with the following command:
+
 
 ```bash
-python finetune.py \
+python scripts/finetune.py \
     --base_model='{path_camoscio_merged_ckpt}' \
+    --tokenizer_name='decapoda-research/llama-7b-hf' \
     --data_path='{your_dataset_path.json}'\
     --train_on_inputs=False \
     --num_epochs=10 \
@@ -100,7 +101,7 @@ python finetune.py \
     --lora_target_modules='[q_proj,k_proj,v_proj,o_proj]' \
     --lora_r=16 \
     --micro_batch_size=8 \
-    --prompt_template 'camoscio'
+    --prompt_template_name 'camoscio'
 ```
 
 
@@ -239,7 +240,7 @@ for i in range(1, 101):
 
 ## 🖊️ Citations
 
-If you use camoscio or the camoscio dataset in your research, please cite our paper:
+If you use camoscio or the camoscio dataset in your research, please cite [our paper](https://arxiv.org/abs/2307.16456):
 
 ```bibtex
 @misc{santilli2023camoscio,
