@@ -2,7 +2,7 @@
 
 import os
 
-MODEL_NAME = "decapoda-research/llama-7b-hf"
+MODEL_NAME = "linhvu/decapoda-research-llama-7b-hf"
 ADAPTER_NAME = "teelinsan/camoscio-7b-llama"
 BATCH_SIZE = 1
 OUT_DIR = "./results"

@@ -20,12 +20,12 @@ LORA_DROPOUT = 0.05
 
 
 model = LlamaForCausalLM.from_pretrained(
-    "decapoda-research/llama-7b-hf",
+    "linhvu/decapoda-research-llama-7b-hf",
     load_in_8bit=True,
     device_map="auto",
 )
 tokenizer = LlamaTokenizer.from_pretrained(
-    "decapoda-research/llama-7b-hf", add_eos_token=True
+    "linhvu/decapoda-research-llama-7b-hf", add_eos_token=True
 )
 
 model = prepare_model_for_int8_training(model)

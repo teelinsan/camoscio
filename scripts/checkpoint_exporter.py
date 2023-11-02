@@ -4,7 +4,7 @@ from peft import PeftModel
 from transformers import LlamaForCausalLM
 
 
-def merge_checkpoints(base_model="decapoda-research/llama-7b-hf", lora_model="teelinsan/camoscio-7b-llama", save_path="./camoscio_merged_ckpt"):
+def merge_checkpoints(base_model="linhvu/decapoda-research-llama-7b-hf", lora_model="teelinsan/camoscio-7b-llama", save_path="./camoscio_merged_ckpt"):
     """
     Utility function to merge a base LLaMA model with a LoRA weights.
     """
