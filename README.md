@@ -81,6 +81,8 @@ If you are looking for fast and efficient inference, take a look at projects lik
 
 ## 🔧 Finetune Camoscio on your own task in Italian
 
+**Tutorial:** If you are looking for a thorough explanation of how to instruction-tune your LM on your downstream task, [check out this tutorial at CLiC-it 2023 by @crux82 and @basteran.](https://github.com/crux82/CLiC-it_2023_tutorial/blob/main/CLiC_it_2023_tutorial_ExtremITA_0_data_encoder.ipynb)
+
 To finetune Camoscio on your own task in Italian you can use the `finetune.py` script in the `scripts` folder.
 
 1. Prepare your dataset. Your dataset should be a json in the format `instruction, input, output`. See `data/camoscio_data.json` for an example.
